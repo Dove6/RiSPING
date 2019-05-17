@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaddleScript : MonoBehaviour
 {
-    public enum side {left, right, none};
+    public enum side {left = -1, right = 1, none = 0};
     enum direction {up = 1, down = -1, none = 0};
     [SerializeField]
     side paddleSide = side.none;
@@ -78,6 +78,7 @@ public class PaddleScript : MonoBehaviour
         if (other.gameObject.name.Contains("Ball")) {
             float adjust = directionImpact * (int)paddleDirection;
             other.rigidbody.velocity = new Vector2(other.rigidbody.velocity.x, other.rigidbody.velocity.y + adjust);
+            other.rigidbody.AddTorque((int)paddleDirection * (int)paddleSide * 20f);
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour
@@ -21,7 +22,6 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void pointScored(PaddleScript.side paddleSide)
@@ -45,6 +45,7 @@ public class GameManagerScript : MonoBehaviour
         ball.Reset();
         leftScore = 0;
         rightScore = 0;
-        Application.LoadLevel("Menu Scene");
+        GlobalManagerScript.instance.winner = paddleSide;
+        SceneManager.LoadScene("Menu Scene");
     }
 }
